@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurant.name }}</title>
+</head>
+<body>
+    <header>
+        <h1>{{ restaurant.name }}</h1>
+        <p>{{ restaurant.cuisine_type }}</p>
+    </header>
+    <section>
+        <p><strong>Address:</strong> {{ restaurant.address }}</p>
+        <p><strong>Contact:</strong> {{ restaurant.contact_phone }}</p>
+        <p><strong>Email:</strong> {{ restaurant.email }}</p>
+        <p><strong>Rating:</strong> {{ restaurant.rating }}</p>
+        <p><strong>Description:</strong> {{ restaurant.description }}</p>
+        <p><strong>Website:</strong> <a href="{{ restaurant.website }}" target="_blank">{{ restaurant.website }}</a></p>
+    </section>
+    <a href="{% url 'restaurants:map' %}">Back to Map</a>
+</body>
+</html>

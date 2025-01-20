@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Midnight Munchies</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        header{
+            background-color: #232946;
+            color: #f8f9fa;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        header h1  {
+            margin: 0;
+            font-size: 1rem 0;
+            font-style: italic;
+            color: #b8c1ec;
+        }
+        nav{
+            display: flex;
+            justify-content: center;
+            background-color: #495057;
+            padding: 0.5rem 0;
+        }
+        nav a{
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        nav a:hover{
+            color: #ffc207;
+        }
+        .hero {
+            background: url('{% static "images/hero-bg.jpg" %}') no-repeat center center/cover;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero h2 {
+            font-size: 2rem;
+            margin: 0;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 2rem;
+            background-color: #fff;
+        }
+        .feature {
+            text-align: center;
+            width: 30%;
+        }
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature p {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #343a40;
+            color: white;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome Midnight Munchies</h1>
+    </header>
+
+    <nav>
+        <a href="{% url 'restaurants:map' %}">Explore restaurants</a>
+        <a href="{% url 'restaurants:search' %}">Search</a>
+        <a href="#features">About</a>
+    </nav>
+
+    <div class="hero">
+        <h2>Discover 24-Hour Restaurant Near You</h2>
+    </div>
+
+    <section id="features" class="features">
+        <div class="feature">
+            <h3>Interactive Map</h3>
+            <p>Find nearby restaurants with our easy-to-use interactive map.</p>
+        </div>
+
+        <div class="feature">
+            <h3>Advanced Search</h3>
+            <p>Search for restaurant by name, cuisine, or rating</p>
+        </div>
+
+        <div class="feature">
+            <h3>24/7 Availability</h3>
+            <p>Only 24-Hour open restaurants are shown to show you have options.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>%copy; 2025 Midnight Munchies. All rights reserved.</p>
+    </footer>
+</body>
+</html>

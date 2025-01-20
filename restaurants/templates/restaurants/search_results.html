@@ -1,0 +1,59 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+    <header>
+        <h1>Search Results</h1>
+        <p>Results for: 
+            {% if name %} Name: <strong>{{ name }}</strong> {% endif %}
+            {% if location %} Location: <strong>{{ location }}</strong> {% endif %}
+        </p>
+    </header>
+    <main>
+        {% if results %}
+            <ul class="results-list">
+                {% for restaurant in results %}
+                    <li class="restaurant-item">
+                        <h2>{{ restaurant.name }}</h2>
+                        <p>Location: {{ restaurant.location }}</p>
+                        <p>Rating: {{ restaurant.rating }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No results found. Try searching again!</p>
+        {% endif %}
+        <a href="{% url 'restaurants:search' %}" class="back-link">Back to Search</a>
+    </main>
+
+    <script>
+        function updateSearchResults(restaurants) {
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = ''; 
+
+            if (restaurants.length === 0) {
+                restaurants.forEach(restaurant => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'result-item';
+                    resultItem.innerHTML = ` 
+                        <h4>${restaurants.name}</h4>
+                        <p>Cuisine: ${restaurants.cuisine_type}</p>
+                        <p>Rating: ${restaurants.rating}</p>
+                        <p>Distance: ${restaurants.distance_km} km</p>
+                    `;
+                    resultsContainer.appendChild(resultItem);
+                })
+            }
+        }
+    </script>
+</body>
+</html>
+{% endblock %}

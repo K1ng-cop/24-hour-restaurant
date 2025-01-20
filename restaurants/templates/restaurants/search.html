@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        main {
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+        }
+        
+        .search-form label, .search-form input, .search-form button {
+            display: block;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .search-form input {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .search-form button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 0.7rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .search-form button:hover {
+            background-color: #0056b3;
+        }
+        
+        .results-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .restaurant-item {
+            background: #f4f4f4;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }  
+    </style>
+
+</head>
+<body>
+{% block content %}
+<header>
+
+<h1>Explore And Find Your Favorite Restaurant</h1>
+<h2>Search Restaurants</h2>
+<p>Search by name or location to explore restaurant near you</p>
+
+</header>
+
+<main>
+<!-- Search Form -->
+<form method="get" action="{% url 'restaurants:map' %}" class="search-form">
+    <label for="name">Restaurant Name</label>
+    <input type="text" id="name" name="name" placeholder="Enter restaurant name">
+    
+    <label for="location">Location</label>
+    <input type="text" id="location" name="location" placeholder="Enter city or area">
+    
+    <button type="submit" class="search-btn">Search</button>
+</form>
+
+</main>
+
+{% endblock %}
+
+    <ul>
+        {% for restaurant in restaurants %}
+            <li>
+                <h2>{{ restaurant.name }}</h2>
+                <p>{{ restaurant.description }}</p>
+                <p>Rating: {{ restaurant.rating }}</p>
+                <p>Address: {{ restaurant.address }}</p>
+            </li>
+        {% empty %}
+            <p>No restaurants found matching your criteria.</p>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
